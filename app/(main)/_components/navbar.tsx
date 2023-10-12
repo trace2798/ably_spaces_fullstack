@@ -10,17 +10,14 @@ import { Id } from "@/convex/_generated/dataModel";
 import { Title } from "./title";
 import { Banner } from "./banner";
 import { Menu } from "./menu";
-import { Publish } from "./publish";
+import { ModeToggle } from "@/components/mode-toggle";
 
 interface NavbarProps {
   isCollapsed: boolean;
   onResetWidth: () => void;
-};
+}
 
-export const Navbar = ({
-  isCollapsed,
-  onResetWidth
-}: NavbarProps) => {
+export const Navbar = ({ isCollapsed, onResetWidth }: NavbarProps) => {
   const params = useParams();
 
   const document = useQuery(api.documents.getById, {
@@ -35,7 +32,7 @@ export const Navbar = ({
           <Menu.Skeleton />
         </div>
       </nav>
-    )
+    );
   }
 
   if (document === null) {
@@ -55,14 +52,12 @@ export const Navbar = ({
         <div className="flex items-center justify-between w-full">
           <Title initialData={document} />
           <div className="flex items-center gap-x-2">
-            <Publish initialData={document} />
+            <ModeToggle/>
             <Menu documentId={document._id} />
           </div>
         </div>
       </nav>
-      {document.isArchived && (
-        <Banner documentId={document._id} />
-      )}
+      {document.isArchived && <Banner documentId={document._id} />}
     </>
-  )
-}
+  );
+};
