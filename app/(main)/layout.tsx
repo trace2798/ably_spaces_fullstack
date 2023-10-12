@@ -7,6 +7,7 @@ import { Spinner } from "@/components/spinner";
 import { Navigation } from "./_components/navigation";
 import { SpaceContextProvider } from "@/components/space-context";
 import LiveCursors from "@/components/live-cursor";
+import AvatarStack from "@/components/AvatarStack";
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated, isLoading } = useConvexAuth();
@@ -26,6 +27,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <SpaceContextProvider example="member-locations">
       <LiveCursors />
+      <AvatarStack/>
       <div className="h-full flex dark:bg-[#1F1F1F]">
         <Navigation />
         <main className="flex-1 h-full overflow-y-auto">

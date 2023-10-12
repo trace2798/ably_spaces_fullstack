@@ -34,7 +34,7 @@ const YourCursor = ({
     return null;
   }
   if (cursorPosition.state === "leave") return null;
-  const { cursorColor, nameColor } = self.profileData.userColors;
+  const { cursorColor, nameColor } = self.profileData.userColors ?? "#ffffff";
 
   return (
     <div
