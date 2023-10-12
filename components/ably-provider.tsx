@@ -8,8 +8,8 @@ import { Realtime } from "ably";
 // const { session } = useSession();
 
 const client = new Realtime.Promise({
-  clientId: nanoid(),
-  key: "XxjO6w.FbqV6Q:niIIlHt70Rs_lSkxqacPvwZvB9fDYCiqOwCYaElU6EE",
+  clientId: useAuth.name,
+  key: process.env.NEXT_PUBLIC_ABLY_API_KEY,
 });
 
 export const AblyClientProvider = ({ children }: { children: ReactNode }) => {
