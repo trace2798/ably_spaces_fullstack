@@ -1,5 +1,4 @@
 "use client";
-
 import { useMutation } from "convex/react";
 import {
   ChevronsLeft,
@@ -31,6 +30,7 @@ import { Navbar } from "./navbar";
 import { TrashBox } from "./trash-box";
 import { UserItem } from "./user-item";
 import { SignOutButton } from "@clerk/clerk-react";
+import AvatarStack from "@/components/AvatarStack";
 
 export const Navigation = () => {
   const router = useRouter();
@@ -187,6 +187,7 @@ export const Navigation = () => {
             </div>
           </SignOutButton>
         </div>
+        <AvatarStack/>
       </aside>
       <div
         ref={navbarRef}

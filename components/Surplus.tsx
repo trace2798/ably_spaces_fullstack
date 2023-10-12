@@ -1,3 +1,4 @@
+'use client'
 import { useState, FunctionComponent } from "react";
 
 import useClickOutsideList from "../hooks/useClickOutsideList";

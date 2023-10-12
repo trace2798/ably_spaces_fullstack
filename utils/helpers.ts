@@ -1,4 +1,6 @@
-import { type SpaceMember } from "@ably/spaces";
+// import { type SpaceMember } from "@ably/spaces";
+
+import { SpaceMember } from "@ably/spaces";
 
 export const colours = [
   { nameColor: "bg-orange-700", cursorColor: "#FE372B" },

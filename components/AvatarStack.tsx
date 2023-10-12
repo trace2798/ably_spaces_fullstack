@@ -1,18 +1,16 @@
-'use client'
+"use client";
 import { useMemo } from "react";
 import { useContext, useEffect } from "react";
-
 import { SpacesContext } from "../components/space-context";
-
 import Avatars from "./avatar";
-import { getMemberName } from "../utils/mockNames";
 import { getMemberColor } from "../utils/mockColors";
-
 import useMembers from "../hooks/useMembers";
 import type { Member } from "../utils/helpers";
+import { useUser } from "@clerk/clerk-react";
 
 const AvatarStack = () => {
-  const name = useMemo(getMemberName, []);
+  const { user } = useUser();
+  const name = useMemo(() => user?.fullName, [user]);
   const memberColor = useMemo(getMemberColor, []);
 
   /** 💡 Get a handle on a space instance 💡 */
