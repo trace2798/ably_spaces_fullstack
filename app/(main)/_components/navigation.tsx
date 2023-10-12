@@ -1,35 +1,34 @@
 "use client";
 
+import { useMutation } from "convex/react";
 import {
   ChevronsLeft,
   MenuIcon,
   Plus,
   PlusCircle,
   Search,
-  Settings,
   Trash
 } from "lucide-react";
 import { useParams, usePathname, useRouter } from "next/navigation";
 import { ElementRef, useEffect, useRef, useState } from "react";
-import { useMediaQuery } from "usehooks-ts";
-import { useMutation } from "convex/react";
 import { toast } from "sonner";
+import { useMediaQuery } from "usehooks-ts";
 
-import { cn } from "@/lib/utils";
-import { api } from "@/convex/_generated/api";
 import {
   Popover,
-  PopoverTrigger,
   PopoverContent,
+  PopoverTrigger,
 } from "@/components/ui/popover";
+import { api } from "@/convex/_generated/api";
 import { useSearch } from "@/hooks/use-search";
 import { useSettings } from "@/hooks/use-settings";
+import { cn } from "@/lib/utils";
 
-import { UserItem } from "./user-item";
-import { Item } from "./item";
 import { DocumentList } from "./document-list";
-import { TrashBox } from "./trash-box";
+import { Item } from "./item";
 import { Navbar } from "./navbar";
+import { TrashBox } from "./trash-box";
+import { UserItem } from "./user-item";
 
 export const Navigation = () => {
   const router = useRouter();
@@ -159,11 +158,6 @@ export const Navigation = () => {
             icon={Search}
             isSearch
             onClick={search.onOpen}
-          />
-          <Item
-            label="Settings"
-            icon={Settings}
-            onClick={settings.onOpen}
           />
           <Item
             onClick={handleCreate}
