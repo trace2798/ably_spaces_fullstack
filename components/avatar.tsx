@@ -10,6 +10,7 @@ import UserInfo from "./UserInfo";
 import { cn } from "@/lib/utils";
 import type { Member } from "../utils/helpers";
 import AvatarDropdown from "./avatar-dropdown";
+import AvatarSelf from "./avatar-self";
 
 const SelfAvatar = ({ self }: { self: Member | null }) => {
   const [hover, setHover] = useState(false);
@@ -115,7 +116,8 @@ const Avatars = ({
 
   return (
     <div className="relative flex" style={{ width: `${totalWidth}px` }}>
-      <SelfAvatar self={self} />
+      {/* <SelfAvatar self={self} /> */}
+      <AvatarSelf self={self} />
       <OtherAvatars
         usersCount={otherUsers.length}
         users={otherUsers.slice(0, MAX_USERS_BEFORE_LIST).reverse()}
