@@ -32,12 +32,12 @@ const AvatarSelf: FC<AvatarSelfProps> = ({ self }) => {
         <HoverCardTrigger>
           <Avatar className="h-8 w-8">
             <AvatarImage
-              src={`${user?.imageUrl || "default_image_url"}`}
+              src={`${user?.imageUrl || `/placeholder.svg`}`}
               alt={`image of ${fullName}`}
             />
             <AvatarFallback>{initials}</AvatarFallback>
             <div
-              className="bg-green-500 w-[10px] h-[10px] rounded-full absolute bottom-1 left-0 transform translate-y-1/2 translate-x-1/2"
+              className=" bg-indigo-500 w-[10px] h-[10px] z-10 rounded-full absolute bottom-1 left-0 transform translate-y-1/2 translate-x-1/2"
               id="status-indicator"
             />
           </Avatar>
