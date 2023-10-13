@@ -11,6 +11,7 @@ import { useUser } from "@clerk/clerk-react";
 const AvatarStack = () => {
   const { user } = useUser();
   const name = useMemo(() => user?.fullName, [user]);
+  const imageUrl = useMemo(() => user?.imageUrl, [user]);
   const memberColor = useMemo(getMemberColor, []);
 
   /** 💡 Get a handle on a space instance 💡 */
@@ -18,7 +19,7 @@ const AvatarStack = () => {
 
   /** 💡 Enter the space as soon as it's available 💡 */
   useEffect(() => {
-    space?.enter({ name, memberColor });
+    space?.enter({ name, memberColor, imageUrl });
   }, [space]);
 
   /** 💡 Get everybody except the local member in the space and the local member 💡 */

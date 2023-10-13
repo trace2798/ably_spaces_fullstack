@@ -13,6 +13,7 @@ import AvatarSelf from "./avatar-self";
 import AvatarOther from "./avatar-other";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "./ui/hover-card";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { Separator } from "./ui/separator";
 
 // const SelfAvatar = ({ self }: { self: Member | null }) => {
 //   const [hover, setHover] = useState(false);
@@ -86,7 +87,7 @@ const OtherAvatars = ({
         }
 
         return (
-          <HoverCard>
+          <HoverCard key={index}>
             <HoverCardTrigger>
               <Avatar className="h-8 w-8">
                 <AvatarImage
@@ -144,6 +145,7 @@ const Avatars = ({
   return (
     <div className="relative flex">
       <AvatarSelf self={self} />
+      <Separator orientation="vertical" className="bg-indigo-500 h-[30px] mx-4" />
       <OtherAvatars
         usersCount={otherUsers.length}
         users={otherUsers.slice(0, MAX_USERS_BEFORE_LIST).reverse()}

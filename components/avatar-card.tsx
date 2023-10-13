@@ -9,9 +9,12 @@ interface AvatarCardProps {}
 const AvatarCard: FC<AvatarCardProps> = ({}) => {
   return (
     <>
-      <Card className="fixed right-8 w-80 bottom-4 p-3 border border-gray-500 flex flex-row items-center justify-center">
+      <Card className="fixed right-8 w-fit bottom-4 p-3 border border-gray-500 flex flex-row items-center justify-center">
         <MessageCircle />
-        <Separator orientation="vertical" className="bg-indigo-500 h-[30px] mx-4" />
+        <Separator
+          orientation="vertical"
+          className="bg-indigo-500 h-[30px] mx-4"
+        />
         <AvatarStack />
       </Card>
     </>
