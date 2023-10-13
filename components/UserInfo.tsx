@@ -48,7 +48,6 @@ const UserInfo: FunctionComponent<{ user: Member; isSelf?: boolean }> = ({
   const name = isSelf
     ? `${user.profileData.name} (You)`
     : user.profileData.name;
-
   return (
     <div className="flex justify-start items-center">
       <div className={containerCSS} id="avatar">
