@@ -2,7 +2,7 @@
 import { useMemo } from "react";
 import { useContext, useEffect } from "react";
 import { SpacesContext } from "../components/space-context";
-import Avatars from "./avatar";
+import Avatars from "./ably-avatar";
 import { getMemberColor } from "../utils/mockColors";
 import useMembers from "../hooks/useMembers";
 import type { Member } from "../utils/helpers";
