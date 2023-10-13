@@ -190,11 +190,7 @@ export const Navigation = () => {
             </div>
           </SignOutButton>
         </div>
-        <Card className="p-3 border border-gray-500 flex flex-row items-center justify-center space-x-5">
-          <MessageCircle />
-          <Separator orientation="vertical" />
-          <AvatarStack />
-        </Card>
+       
       </aside>
       <div
         ref={navbarRef}
