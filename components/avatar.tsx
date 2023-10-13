@@ -5,11 +5,11 @@ import {
   calculateRightOffset,
   calculateTotalWidth,
 } from "../utils/helpers";
-import Surplus from "./Surplus";
 import UserInfo from "./UserInfo";
 
-import type { Member } from "../utils/helpers";
 import { cn } from "@/lib/utils";
+import type { Member } from "../utils/helpers";
+import AvatarDropdown from "./avatar-dropdown";
 
 const SelfAvatar = ({ self }: { self: Member | null }) => {
   const [hover, setHover] = useState(false);
@@ -27,7 +27,7 @@ const SelfAvatar = ({ self }: { self: Member | null }) => {
       />
 
       {hover && self ? (
-        <div className="absolute -top-16 px-2 py-2 bg-black rounded-lg text-white min-w-[240px]">
+        <div className="absolute -top-16 px-2 py-2 bg-indigo-400 rounded-lg text-white min-w-[240px]">
           <UserInfo user={self} isSelf={true} />
         </div>
       ) : null}
@@ -56,7 +56,7 @@ const OtherAvatars = ({
             [user.profileData.memberColor]: user.isConnected,
             "bg-gray-200": !user.isConnected,
           },
-          "h-12 w-12 rounded-full flex items-center justify-center relative border-2 border-gray-200"
+          "h-8 w-8 shrink-0 rounded-full flex items-center justify-center relative border border-gray-400"
         );
         const initialsCSS = cn(
           {
@@ -120,8 +120,7 @@ const Avatars = ({
         usersCount={otherUsers.length}
         users={otherUsers.slice(0, MAX_USERS_BEFORE_LIST).reverse()}
       />
-      {/** 💡 Dropdown list of surplus users 💡 */}
-      <Surplus otherUsers={otherUsers} />
+      <AvatarDropdown otherUsers={otherUsers} />
     </div>
   );
 };
