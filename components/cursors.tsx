@@ -62,76 +62,6 @@ type CursorUpdate = Omit<_CursorUpdate, "data"> & {
   data: { state: "move" | "leave" };
 };
 
-// 💡 This component is used to render the cursors of other users in the space
-// const MemberCursors = ({
-//   otherUsers,
-//   space,
-//   selfConnectionId,
-// }: {
-//   otherUsers: Member[];
-//   space?: Space;
-//   selfConnectionId?: string;
-// }) => {
-//   const [positions, setPositions] = useState<{
-//     [connectionId: string]: {
-//       position: { x: number; y: number };
-//       state: string | undefined;
-//     };
-//   }>({});
-
-//   useEffect(() => {
-//     if (!space) return;
-
-//     space.cursors.subscribe("update", (event) => {
-//       let e = event as CursorUpdate;
-//       // 💡 Ignore our own cursor
-//       if (e.connectionId === selfConnectionId) return;
-
-//       setPositions((positions) => ({
-//         ...positions,
-//         [e.connectionId]: { position: e.position, state: e.data.state },
-//       }));
-//     });
-//     return () => {
-//       space.cursors.unsubscribe();
-//     };
-//   }, [space]);
-
-//   return (
-//     <>
-//       {otherUsers.map(({ connectionId, profileData }) => {
-//         if (!positions[connectionId]) return;
-//         if (positions[connectionId].state === "leave") return;
-//         const defaultColor = getMemberColor();
-//         const defaultName = "something something";
-//         const { cursorColor = defaultColor, nameColor = defaultName } =
-//           profileData?.userColors || {};
-//         // const { cursorColor, nameColor } =
-//         //   profileData.userColors ?? getMemberColor();
-//         return (
-//           <div
-//             key={connectionId}
-//             id={`member-cursor-${connectionId}`}
-//             className="absolute"
-//             style={{
-//               left: `${positions[connectionId].position.x}px`,
-//               top: `${positions[connectionId].position.y}px`,
-//             }}
-//           >
-//             <CursorSvg cursorColor={cursorColor} />
-//             <div
-//               className={`px-4 py-2 m-2 ${nameColor} rounded-full text-sm text-white whitespace-nowrap member-cursor`}
-//             >
-//               {profileData.name}
-//             </div>
-//           </div>
-//         );
-//       })}
-//     </>
-//   );
-// };
-
-// export { MemberCursors, YourCursor };
 const MemberCursors = ({
   otherUsers,
   space,
@@ -168,44 +98,14 @@ const MemberCursors = ({
 
   return (
     <>
-      {/* {otherUsers.map(({ connectionId, profileData }) => {
-        if (!positions[connectionId]) return;
-        if (positions[connectionId].state === "leave") return;
-
-        const defaultColor = getMemberColor();
-        const defaultName = getLocationColors();
-        const { cursorColor = defaultColor, nameColor = defaultName } =
-          profileData?.userColors || {};
-        console.log("RANDOM COLOR", defaultColor);
-        return (
-          <div
-            key={connectionId}
-            id={`member-cursor-${connectionId}`}
-            className="absolute"
-            style={{
-              left: `${positions[connectionId].position.x}px`,
-              top: `${positions[connectionId].position.y}px`,
-            }}
-          >
-            <CursorSvg cursorColor={defaultName} />
-            <div
-              className={`px-4 py-2 m-2 bg-orange-400 rounded-full text-sm text-white whitespace-nowrap member-cursor`}
-            >
-              {profileData.name}
-            </div>
-          </div>
-        );
-      })} */}
       {otherUsers.map(({ connectionId, profileData }) => {
         if (!positions[connectionId]) return;
         if (positions[connectionId].state === "leave") return;
-
         // Initialize userColors if it doesn't exist
         profileData.userColors = profileData.userColors || {
           cursorColor: "",
           nameColor: "",
         };
-
         // Use colors from profileData if they exist, otherwise generate new ones
         let { cursorColor, nameColor } = profileData.userColors;
         if (!cursorColor) {
