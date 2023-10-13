@@ -8,14 +8,12 @@ import { Separator } from "./ui/separator";
 
 const Avatars = ({
   otherUsers,
-  self,
 }: {
   otherUsers: Member[];
-  self: Member | null;
 }) => {
   return (
     <div className="relative flex">
-      <AvatarSelf self={self} />
+      <AvatarSelf />
       <Separator
         orientation="vertical"
         className="bg-indigo-500 h-[30px] mx-4"

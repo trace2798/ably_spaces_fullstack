@@ -5,16 +5,15 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
 import { Member } from "@/utils/helpers";
-
 import { FC } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { useUser } from "@clerk/clerk-react";
 
 interface AvatarSelfProps {
-  self: Member | null;
+  // self: Member | null;
 }
 
-const AvatarSelf: FC<AvatarSelfProps> = ({ self }) => {
+const AvatarSelf: FC<AvatarSelfProps> = ({}) => {
   const { user } = useUser();
   const fullName = user?.fullName;
   let initials = "DP";
@@ -37,12 +36,14 @@ const AvatarSelf: FC<AvatarSelfProps> = ({ self }) => {
             />
             <AvatarFallback>{initials}</AvatarFallback>
             <div
-              className=" bg-indigo-500 w-[10px] h-[10px] z-10 rounded-full absolute bottom-1 left-0 transform translate-y-1/2 translate-x-1/2"
+              className="bg-green-500 overflow-visible w-[10px] h-[10px] rounded-full absolute bottom-1 left-0 transform translate-y-1/2 translate-x-1/2"
               id="status-indicator"
             />
           </Avatar>
         </HoverCardTrigger>
-        <HoverCardContent>{fullName} (You)</HoverCardContent>
+        <HoverCardContent className="capitalize">
+          {fullName} (You)
+        </HoverCardContent>
       </HoverCard>
     </>
   );

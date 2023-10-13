@@ -1,12 +1,11 @@
 "use client";
-import { useMemo } from "react";
-import { useContext, useEffect } from "react";
+import { useUser } from "@clerk/clerk-react";
+import { useContext, useEffect, useMemo } from "react";
 import { SpacesContext } from "../components/space-context";
-import Avatars from "./ably-avatar";
-import { getMemberColor } from "../utils/mockColors";
 import useMembers from "../hooks/useMembers";
 import type { Member } from "../utils/helpers";
-import { useUser } from "@clerk/clerk-react";
+import { getMemberColor } from "../utils/mockColors";
+import Avatars from "./ably-avatar";
 
 const AvatarStack = () => {
   const { user } = useUser();
@@ -23,15 +22,11 @@ const AvatarStack = () => {
   }, [space]);
 
   /** 💡 Get everybody except the local member in the space and the local member 💡 */
-  const { otherMembers, self } = useMembers(space);
-
+  const { otherMembers } = useMembers(space);
   return (
     <div id="avatar-stack">
       {/** 💡 Stack of first 5 user avatars including yourself.💡 */}
-      <Avatars
-        self={self as Member | null}
-        otherUsers={otherMembers as Member[]}
-      />
+      <Avatars otherUsers={otherMembers as Member[]} />
     </div>
   );
 };

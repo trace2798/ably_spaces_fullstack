@@ -5,14 +5,12 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
 import { Member } from "@/utils/helpers";
-
+import { useUser } from "@clerk/clerk-react";
 import { FC } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { useUser } from "@clerk/clerk-react";
 
 interface AvatarOtherProps {
   users: Member[];
-
 }
 
 const AvatarOther: FC<AvatarOtherProps> = ({ users }) => {
@@ -55,7 +53,9 @@ const AvatarOther: FC<AvatarOtherProps> = ({ users }) => {
                 />
               </Avatar>
             </HoverCardTrigger>
-            <HoverCardContent>{user?.profileData.name}</HoverCardContent>
+            <HoverCardContent className="capitalize">
+              {user?.profileData.name}
+            </HoverCardContent>
           </HoverCard>
         );
       })}
