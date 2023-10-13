@@ -16,6 +16,16 @@ interface AvatarSelfProps {
 
 const AvatarSelf: FC<AvatarSelfProps> = ({ self }) => {
   const { user } = useUser();
+  const fullName = user?.fullName;
+  let initials = "DP";
+
+  if (fullName) {
+    const words = fullName.split(" ");
+    const firstLetter = words[0].charAt(0);
+    const lastLetter = words[words.length - 1].charAt(0);
+    initials = `${firstLetter}${lastLetter}`;
+  }
+
   return (
     <>
       <HoverCard>
@@ -23,18 +33,16 @@ const AvatarSelf: FC<AvatarSelfProps> = ({ self }) => {
           <Avatar className="h-8 w-8">
             <AvatarImage
               src={`${user?.imageUrl || "default_image_url"}`}
-              alt="@shadcn"
+              alt={`image of ${fullName}`}
             />
-            <AvatarFallback>CN</AvatarFallback>
+            <AvatarFallback>{initials}</AvatarFallback>
             <div
               className="bg-green-500 w-[10px] h-[10px] rounded-full absolute bottom-1 left-0 transform translate-y-1/2 translate-x-1/2"
               id="status-indicator"
             />
           </Avatar>
         </HoverCardTrigger>
-        <HoverCardContent>
-          The React Framework – created and maintained by @vercel.
-        </HoverCardContent>
+        <HoverCardContent>{fullName} (You)</HoverCardContent>
       </HoverCard>
     </>
   );

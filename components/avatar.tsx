@@ -12,29 +12,29 @@ import type { Member } from "../utils/helpers";
 import AvatarDropdown from "./avatar-dropdown";
 import AvatarSelf from "./avatar-self";
 
-const SelfAvatar = ({ self }: { self: Member | null }) => {
-  const [hover, setHover] = useState(false);
+// const SelfAvatar = ({ self }: { self: Member | null }) => {
+//   const [hover, setHover] = useState(false);
 
-  return (
-    <div
-      className="bg-orange-600 h-8 w-8 shrink-0 rounded-full flex items-center justify-center relative"
-      onMouseOver={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
-    >
-      <p className="text-xs text-white">You</p>
-      <div
-        className="bg-green-500 w-[10px] h-[10px] rounded-full absolute bottom-1 left-0 transform translate-y-1/2 translate-x-1/2"
-        id="status-indicator"
-      />
+//   return (
+//     <div
+//       className="bg-orange-600 h-8 w-8 shrink-0 rounded-full flex items-center justify-center relative"
+//       onMouseOver={() => setHover(true)}
+//       onMouseLeave={() => setHover(false)}
+//     >
+//       <p className="text-xs text-white">You</p>
+//       <div
+//         className="bg-green-500 w-[10px] h-[10px] rounded-full absolute bottom-1 left-0 transform translate-y-1/2 translate-x-1/2"
+//         id="status-indicator"
+//       />
 
-      {hover && self ? (
-        <div className="absolute -top-16 px-2 py-2 bg-indigo-400 rounded-lg text-white min-w-[240px]">
-          <UserInfo user={self} isSelf={true} />
-        </div>
-      ) : null}
-    </div>
-  );
-};
+//       {hover && self ? (
+//         <div className="absolute -top-16 px-2 py-2 bg-indigo-400 rounded-lg text-white min-w-[240px]">
+//           <UserInfo user={self} isSelf={true} />
+//         </div>
+//       ) : null}
+//     </div>
+//   );
+// };
 
 const OtherAvatars = ({
   users,
