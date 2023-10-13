@@ -5,7 +5,7 @@ import CursorSvg from "./cursor-svg";
 import useCursor from "../hooks/useCursor";
 import { Member } from "../utils/types";
 import { useUser } from "@clerk/clerk-react";
-import { getMemberColor } from "@/utils/mockColors";
+import { getLocationColors, getMemberColor } from "@/utils/mockColors";
 
 // 💡 This component is used to render the cursor of the user
 const YourCursor = ({
@@ -168,15 +168,15 @@ const MemberCursors = ({
 
   return (
     <>
-      {otherUsers.map(({ connectionId, profileData }) => {
+      {/* {otherUsers.map(({ connectionId, profileData }) => {
         if (!positions[connectionId]) return;
         if (positions[connectionId].state === "leave") return;
 
         const defaultColor = getMemberColor();
-        const defaultName = "something something";
+        const defaultName = getLocationColors();
         const { cursorColor = defaultColor, nameColor = defaultName } =
           profileData?.userColors || {};
-
+        console.log("RANDOM COLOR", defaultColor);
         return (
           <div
             key={connectionId}
@@ -187,9 +187,52 @@ const MemberCursors = ({
               top: `${positions[connectionId].position.y}px`,
             }}
           >
-            <CursorSvg cursorColor={cursorColor} />
+            <CursorSvg cursorColor={defaultName} />
             <div
-              className={`px-4 py-2 m-2 ${nameColor} rounded-full text-sm text-white whitespace-nowrap member-cursor`}
+              className={`px-4 py-2 m-2 bg-orange-400 rounded-full text-sm text-white whitespace-nowrap member-cursor`}
+            >
+              {profileData.name}
+            </div>
+          </div>
+        );
+      })} */}
+      {otherUsers.map(({ connectionId, profileData }) => {
+        if (!positions[connectionId]) return;
+        if (positions[connectionId].state === "leave") return;
+
+        // Initialize userColors if it doesn't exist
+        profileData.userColors = profileData.userColors || {
+          cursorColor: "",
+          nameColor: "",
+        };
+
+        // Use colors from profileData if they exist, otherwise generate new ones
+        let { cursorColor, nameColor } = profileData.userColors;
+        if (!cursorColor) {
+          cursorColor = getMemberColor();
+          // Save the generated color to profileData
+          profileData.userColors.cursorColor = cursorColor;
+        }
+        if (!nameColor) {
+          nameColor = getLocationColors();
+          // Save the generated color to profileData
+          profileData.userColors.nameColor = nameColor;
+        }
+
+        console.log("RANDOM COLOR", cursorColor);
+        return (
+          <div
+            key={connectionId}
+            id={`member-cursor-${connectionId}`}
+            className="absolute"
+            style={{
+              left: `${positions[connectionId].position.x}px`,
+              top: `${positions[connectionId].position.y}px`,
+            }}
+          >
+            <CursorSvg cursorColor={nameColor} />
+            <div
+              className={`px-4 py-2 m-2 ${cursorColor} rounded-full text-sm text-white whitespace-nowrap member-cursor`}
             >
               {profileData.name}
             </div>
