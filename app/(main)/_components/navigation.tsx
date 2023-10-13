@@ -4,6 +4,7 @@ import {
   ChevronsLeft,
   LogOutIcon,
   MenuIcon,
+  MessageCircle,
   Plus,
   PlusCircle,
   Search,
@@ -31,6 +32,8 @@ import { TrashBox } from "./trash-box";
 import { UserItem } from "./user-item";
 import { SignOutButton } from "@clerk/clerk-react";
 import AvatarStack from "@/components/AvatarStack";
+import { Card } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 
 export const Navigation = () => {
   const router = useRouter();
@@ -187,7 +190,11 @@ export const Navigation = () => {
             </div>
           </SignOutButton>
         </div>
-        <AvatarStack/>
+        <Card className="p-3 border border-gray-500 flex flex-row items-center justify-center space-x-5">
+          <MessageCircle />
+          <Separator orientation="vertical" />
+          <AvatarStack />
+        </Card>
       </aside>
       <div
         ref={navbarRef}

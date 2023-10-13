@@ -16,7 +16,7 @@ const SelfAvatar = ({ self }: { self: Member | null }) => {
 
   return (
     <div
-      className="bg-orange-600 h-12 w-12 rounded-full flex items-center justify-center relative border-2 border-gray-200"
+      className="bg-orange-600 h-8 w-8 shrink-0 rounded-full flex items-center justify-center relative"
       onMouseOver={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
