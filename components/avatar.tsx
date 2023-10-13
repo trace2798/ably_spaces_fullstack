@@ -145,15 +145,17 @@ const Avatars = ({
   return (
     <div className="relative flex">
       <AvatarSelf self={self} />
-      <Separator orientation="vertical" className="bg-indigo-500 h-[30px] mx-4" />
-      <OtherAvatars
-        usersCount={otherUsers.length}
-        users={otherUsers.slice(0, MAX_USERS_BEFORE_LIST).reverse()}
+      <Separator
+        orientation="vertical"
+        className="bg-indigo-500 h-[30px] mx-4"
       />
-      {/* <AvatarOther
+      {/* <OtherAvatars
         usersCount={otherUsers.length}
         users={otherUsers.slice(0, MAX_USERS_BEFORE_LIST).reverse()}
       /> */}
+      <AvatarOther
+        users={otherUsers.slice(0, MAX_USERS_BEFORE_LIST).reverse()}
+      />
       {otherUsers.length < MAX_USERS_BEFORE_LIST ? (
         ""
       ) : (

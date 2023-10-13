@@ -12,10 +12,10 @@ import { useUser } from "@clerk/clerk-react";
 
 interface AvatarOtherProps {
   users: Member[];
-  usersCount: number;
+
 }
 
-const AvatarOther: FC<AvatarOtherProps> = ({ users, usersCount }) => {
+const AvatarOther: FC<AvatarOtherProps> = ({ users }) => {
   const { user } = useUser();
   const fullName = user?.fullName;
   let initials = "DP";
@@ -30,22 +30,34 @@ const AvatarOther: FC<AvatarOtherProps> = ({ users, usersCount }) => {
   return (
     <>
       {users.map((user, index) => {
-        <HoverCard key={index}>
-          <HoverCardTrigger>
-            <Avatar className="h-8 w-8">
-              <AvatarImage
-                src={`${user?.clientId || "default_image_url"}`}
-                alt={`image of ${fullName}`}
-              />
-              <AvatarFallback>{initials}</AvatarFallback>
-              <div
-                className="bg-green-500 w-[10px] h-[10px] rounded-full absolute bottom-1 left-0 transform translate-y-1/2 translate-x-1/2"
-                id="status-indicator"
-              />
-            </Avatar>
-          </HoverCardTrigger>
-          <HoverCardContent>{user?.clientId}</HoverCardContent>
-        </HoverCard>;
+        const fullName = user?.profileData.name;
+        let initials = "DP";
+        console.log("USERS", users);
+        if (fullName) {
+          const words = fullName.split(" ");
+          const firstLetter = words[0].charAt(0);
+          const lastLetter = words[words.length - 1].charAt(0);
+          initials = `${firstLetter}${lastLetter}`;
+        }
+
+        return (
+          <HoverCard key={index}>
+            <HoverCardTrigger>
+              <Avatar className="h-8 w-8">
+                <AvatarImage
+                  src={`${user?.profileData.imageUrl || "default_image_url"}`}
+                  alt={`image of`}
+                />
+                <AvatarFallback>{initials}</AvatarFallback>
+                <div
+                  className="bg-green-500 w-[10px] h-[10px] rounded-full absolute bottom-1 left-0 transform translate-y-1/2 translate-x-1/2"
+                  id="status-indicator"
+                />
+              </Avatar>
+            </HoverCardTrigger>
+            <HoverCardContent>{user?.profileData.name}</HoverCardContent>
+          </HoverCard>
+        );
       })}
     </>
   );
