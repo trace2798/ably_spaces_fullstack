@@ -40,3 +40,11 @@ export const MAX_USERS_BEFORE_LIST = 10;
 export type Member = Omit<SpaceMember, "profileData"> & {
   profileData: { memberColor: string; name: string; imageUrl?: string };
 };
+
+export type Message = {
+  author: string;
+  content: string;
+  timestamp: Date;
+  id: string;
+  deleted?: boolean;
+};

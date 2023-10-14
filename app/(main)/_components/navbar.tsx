@@ -1,19 +1,18 @@
 "use client";
 
 import { useQuery } from "convex/react";
-import { useParams } from "next/navigation";
 import { MenuIcon } from "lucide-react";
+import { useParams } from "next/navigation";
 
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 
-import { Title } from "./title";
+import { ModeToggle } from "@/components/mode-toggle";
+import ChatSheet from "@/components/chat-sheet";
+import { useUser } from "@clerk/clerk-react";
 import { Banner } from "./banner";
 import { Menu } from "./menu";
-import { ModeToggle } from "@/components/mode-toggle";
-import UserClaims from "@/components/user-claims";
-import { useUser } from "@clerk/clerk-react";
-// import RealtimeForm from "@/components/chat-form";
+import { Title } from "./title";
 
 interface NavbarProps {
   isCollapsed: boolean;
@@ -61,7 +60,7 @@ export const Navbar = ({ isCollapsed, onResetWidth }: NavbarProps) => {
               creatorName={document.userName}
               isPublic={document.isPublic}
             />
-            <UserClaims
+            <ChatSheet
               clientId={user?.id || "Sm"}
               channelName={document._id}
               creatorId={document.userId}
