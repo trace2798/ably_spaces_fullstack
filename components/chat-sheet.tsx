@@ -72,8 +72,6 @@ const ChatSheet = ({
 
   const { channel } = useChannel(channelName, handleMessage);
 
-  console.log(channel, "CHANNEL");
-
   // 💡 Handles pressing enter or the send button
   const sendMessage = () => {
     if (draft.length === 0) return;
@@ -118,6 +116,7 @@ const ChatSheet = ({
       dispatchMessage({ type: "clear" });
     };
   }, []);
+
   useEffect(() => {
     scrollRef?.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages.length]);
