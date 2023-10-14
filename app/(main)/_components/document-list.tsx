@@ -32,7 +32,7 @@ export const DocumentList = ({
     }));
   };
 
-  const documents = useQuery(api.documents.getSidebar, {
+  const documentsPublic = useQuery(api.documents.getSidebarPublic, {
     parentDocument: parentDocumentId
   });
 
@@ -40,7 +40,7 @@ export const DocumentList = ({
     router.push(`/documents/${documentId}`);
   };
 
-  if (documents === undefined) {
+  if (documentsPublic === undefined) {
     return (
       <>
         <Item.Skeleton level={level} />
@@ -68,7 +68,7 @@ export const DocumentList = ({
       >
         No pages inside
       </p>
-      {documents.map((document) => (
+      {documentsPublic.map((document) => (
         <div key={document._id}>
           <Item
             id={document._id}

@@ -51,7 +51,7 @@ export const archive = mutation({
   },
 });
 
-export const getSidebar = query({
+export const getSidebarPublic = query({
   args: {
     parentDocument: v.optional(v.id("documents")),
   },
@@ -62,20 +62,46 @@ export const getSidebar = query({
       throw new Error("Not authenticated");
     }
 
-    const userId = identity.subject;
-
     const documents = await ctx.db
       .query("documents")
-      .withIndex("by_user_parent", (q) =>
-        q.eq("userId", userId).eq("parentDocument", args.parentDocument)
-      )
+      .filter((q) => q.eq(q.field("parentDocument"), args.parentDocument))
       .filter((q) => q.eq(q.field("isArchived"), false))
+      .filter((q) => q.eq(q.field("isPublic"), true)) // Only get public documents
       .order("desc")
       .collect();
 
     return documents;
   },
 });
+
+
+
+// export const getSidebar = query({
+//   args: {
+//     parentDocument: v.optional(v.id("documents")),
+//   },
+//   handler: async (ctx, args) => {
+//     const identity = await ctx.auth.getUserIdentity();
+
+//     if (!identity) {
+//       throw new Error("Not authenticated");
+//     }
+
+//     const userId = identity.subject;
+
+//     const documents = await ctx.db
+//       .query("documents")
+//       .withIndex("by_user_parent", (q) =>
+//         q.eq("userId", userId).eq("parentDocument", args.parentDocument)
+//       )
+//       .filter((q) => q.eq(q.field("isArchived"), false))
+//       .filter((q) => q.eq(q.field("isPublic"), true)) 
+//       .order("desc")
+//       .collect();
+
+//     return documents;
+//   },
+// });
 
 export const create = mutation({
   args: {
@@ -97,6 +123,7 @@ export const create = mutation({
       userId,
       isArchived: false,
       isPublished: false,
+      isPublic: false,
     });
 
     return document;
@@ -284,9 +311,9 @@ export const update = mutation({
       throw new Error("Not found");
     }
 
-    if (existingDocument.userId !== userId) {
-      throw new Error("Unauthorized");
-    }
+    // if (existingDocument.userId !== userId) {
+    //   throw new Error("Unauthorized");
+    // }
 
     const document = await ctx.db.patch(args.id, {
       ...rest,
