@@ -30,7 +30,7 @@ const AvatarOther: FC<AvatarOtherProps> = ({ users }) => {
       {users.map((user, index) => {
         const fullName = user?.profileData.name;
         let initials = "DP";
-        console.log("USERS", users);
+        // console.log("USERS", users);
         if (fullName) {
           const words = fullName.split(" ");
           const firstLetter = words[0].charAt(0);
