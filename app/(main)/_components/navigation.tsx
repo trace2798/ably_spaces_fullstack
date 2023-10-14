@@ -157,10 +157,12 @@ export const Navigation = () => {
           <Item onClick={handleCreate} label="New page" icon={PlusCircle} />
         </div>
         <div className="mt-4">
-          <h1 className="ml-3 text-sm text-indigo-600">Public Documents</h1>
+          <h1 className="ml-3 mb-1 text-sm text-indigo-600 underline underline-offset-2">
+            Public Documents
+          </h1>
           <DocumentList />
           <Item onClick={handleCreate} icon={Plus} label="Add a page" />
-          <h1 className="ml-3 text-sm text-indigo-600 mt-3">
+          <h1 className="ml-3 text-sm text-indigo-600 mt-3 mb-1 underline underline-offset-2">
             Private Documents
           </h1>
           <DocumentListPrivate />

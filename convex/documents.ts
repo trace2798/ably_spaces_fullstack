@@ -323,11 +323,15 @@ export const getById = query({
       throw new Error("Not authenticated");
     }
 
-    // const userId = identity.subject;
+    if (document.isPublic) {
+      return document;
+    }
 
-    // if (document.userId !== userId) {
-    //   throw new Error("Unauthorized");
-    // }
+    const userId = identity.subject;
+
+    if (document.userId !== userId) {
+      throw new Error("Unauthorized");
+    }
 
     return document;
   },
