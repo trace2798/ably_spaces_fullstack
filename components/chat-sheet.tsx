@@ -37,7 +37,7 @@ const ChatSheet = ({
   const isModerator = user.id === creatorId;
   const scrollRef = useRef<ElementRef<"div">>(null);
   const author = user.fullName;
-  const [draft, setDraft] = useState("");
+  const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
   // 💡 Used to handle incoming events and action the changes against the message list
@@ -71,15 +71,16 @@ const ChatSheet = ({
   };
 
   const { channel } = useChannel(channelName, handleMessage);
+  console.log(channel, "CHANNEL");
 
   // 💡 Handles pressing enter or the send button
   const sendMessage = () => {
-    if (draft.length === 0) return;
+    if (message.length === 0) return;
 
     channel.publish("send", {
-      message: { author, content: draft, timestamp: new Date() },
+      message: { author, content: message, timestamp: new Date() },
     });
-    setDraft("");
+    setMessage("");
   };
 
   // 💡 Handles pressing the delete button
@@ -158,8 +159,8 @@ const ChatSheet = ({
           disabled={loading}
           className="mt-5"
           placeholder="Send a Message to get started"
-          value={draft}
-          onChange={(e) => setDraft(e.target.value)}
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && sendMessage()}
         />
       </SheetContent>

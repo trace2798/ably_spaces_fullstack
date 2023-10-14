@@ -23,7 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ConvexClientProvider>
-          <AblyClientProvider>
+          {/* <AblyClientProvider> */}
             <EdgeStoreProvider>
               <ThemeProvider
                 attribute="class"
@@ -36,7 +36,7 @@ export default function RootLayout({
                 {children}
               </ThemeProvider>
             </EdgeStoreProvider>
-          </AblyClientProvider>
+          {/* </AblyClientProvider> */}
         </ConvexClientProvider>
       </body>
     </html>
