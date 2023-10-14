@@ -11,6 +11,9 @@ import { Title } from "./title";
 import { Banner } from "./banner";
 import { Menu } from "./menu";
 import { ModeToggle } from "@/components/mode-toggle";
+import UserClaims from "@/components/user-claims";
+import { useUser } from "@clerk/clerk-react";
+// import RealtimeForm from "@/components/chat-form";
 
 interface NavbarProps {
   isCollapsed: boolean;
@@ -19,7 +22,7 @@ interface NavbarProps {
 
 export const Navbar = ({ isCollapsed, onResetWidth }: NavbarProps) => {
   const params = useParams();
-
+  const { user } = useUser();
   const document = useQuery(api.documents.getById, {
     documentId: params.documentId as Id<"documents">,
   });
@@ -53,7 +56,20 @@ export const Navbar = ({ isCollapsed, onResetWidth }: NavbarProps) => {
           <Title initialData={document} />
           <div className="flex items-center gap-x-2">
             <ModeToggle />
-            <Menu documentId={document._id} creatorName={document.userName} isPublic={document.isPublic} />
+            <Menu
+              documentId={document._id}
+              creatorName={document.userName}
+              isPublic={document.isPublic}
+            />
+            <UserClaims
+              clientId={user?.id || "Sm"}
+              channelName={document._id}
+              creatorId={document.userId}
+            />
+            {/* <RealtimeForm
+              clientId={user?.id || "Sm"}
+              channelName={document._id}
+            /> */}
           </div>
         </div>
       </nav>
