@@ -4,11 +4,10 @@ import {
   ChevronsLeft,
   LogOutIcon,
   MenuIcon,
-  MessageCircle,
   Plus,
   PlusCircle,
   Search,
-  Trash,
+  Trash
 } from "lucide-react";
 import { useParams, usePathname, useRouter } from "next/navigation";
 import { ElementRef, useEffect, useRef, useState } from "react";
@@ -22,22 +21,16 @@ import {
 } from "@/components/ui/popover";
 import { api } from "@/convex/_generated/api";
 import { useSearch } from "@/hooks/use-search";
-import { useSettings } from "@/hooks/use-settings";
 import { cn } from "@/lib/utils";
-
+import { SignOutButton } from "@clerk/clerk-react";
 import { DocumentList } from "./document-list";
 import { Item } from "./item";
 import { Navbar } from "./navbar";
 import { TrashBox } from "./trash-box";
-import { UserItem } from "./user-item";
-import { SignOutButton } from "@clerk/clerk-react";
-import AvatarStack from "@/components/AvatarStack";
-import { Card } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
+import UserInfoCard from "./user-info-card";
 
 export const Navigation = () => {
   const router = useRouter();
-  const settings = useSettings();
   const search = useSearch();
   const params = useParams();
   const pathname = usePathname();
@@ -158,7 +151,7 @@ export const Navigation = () => {
           <ChevronsLeft className="h-6 w-6" />
         </div>
         <div>
-          <UserItem />
+          <UserInfoCard/>
           <Item label="Search" icon={Search} isSearch onClick={search.onOpen} />
           <Item onClick={handleCreate} label="New page" icon={PlusCircle} />
         </div>
@@ -185,8 +178,8 @@ export const Navigation = () => {
         <div className="ml-3 mt-3 hover:cursor-pointer flex w-[200px]">
           <SignOutButton>
             <div className="text-muted-foreground rounded-sm hover:bg-neutral-300 dark:hover:bg-neutral-600 flex flex-row">
-              <LogOutIcon className="hover:text-indigo-400" />
-              <h1 className="ml-2">Log Out</h1>
+              <LogOutIcon className="hover:text-indigo-400 w-5 h-5" />
+              <h1 className="ml-2 text-sm">Log Out</h1>
             </div>
           </SignOutButton>
         </div>

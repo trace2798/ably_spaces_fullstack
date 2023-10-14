@@ -1,6 +1,8 @@
 // import { type SpaceMember } from "@ably/spaces";
 
 import { SpaceMember } from "@ably/spaces";
+import { Types } from "ably";
+import { SignJWT } from "jose";
 
 export const colours = [
   { nameColor: "bg-orange-700", cursorColor: "#FE372B" },
@@ -34,7 +36,6 @@ export const getSpaceNameFromUrl = () => {
 
 export const REMOVE_USER_AFTER_MILLIS = 120_000;
 export const MAX_USERS_BEFORE_LIST = 10;
-
 
 export type Member = Omit<SpaceMember, "profileData"> & {
   profileData: { memberColor: string; name: string; imageUrl?: string };
