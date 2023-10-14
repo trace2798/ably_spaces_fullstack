@@ -35,6 +35,8 @@ export const Menu = ({ documentId, creatorName, isPublic }: MenuProps) => {
 
   const archive = useMutation(api.documents.archive);
 
+  const changeVisibility = useMutation(api.documents.toggleVisibility);
+
   const onArchive = () => {
     const promise = archive({ id: documentId });
 
@@ -42,6 +44,18 @@ export const Menu = ({ documentId, creatorName, isPublic }: MenuProps) => {
       loading: "Moving to trash...",
       success: "Note moved to trash!",
       error: "Failed to archive note.",
+    });
+
+    router.push("/documents");
+  };
+
+  const onChangeVisibility = () => {
+    const promise = changeVisibility({ id: documentId });
+
+    toast.promise(promise, {
+      loading: "Changing Visibility...",
+      success: "Visibility Changed",
+      error: "Failed to change visibility.",
     });
 
     router.push("/documents");
@@ -75,7 +89,11 @@ export const Menu = ({ documentId, creatorName, isPublic }: MenuProps) => {
       {isPublic ? (
         <HoverCard>
           <HoverCardTrigger className="flex flex-col group">
-            <Button size="sm" variant="ghost" onClick={() => ""}>
+            <Button
+              size="sm"
+              variant="ghost"
+              onClick={() => onChangeVisibility()}
+            >
               <Globe className="text-indigo-400 w-5 h-5 group-hover:hidden" />
               <Lock className="text-indigo-400 w-5 h-5 hidden group-hover:block" />
             </Button>
@@ -87,7 +105,11 @@ export const Menu = ({ documentId, creatorName, isPublic }: MenuProps) => {
       ) : (
         <HoverCard>
           <HoverCardTrigger className="flex flex-col group">
-            <Button size="sm" variant="ghost" onClick={() => ""}>
+            <Button
+              size="sm"
+              variant="ghost"
+              onClick={() => onChangeVisibility()}
+            >
               <Lock className="text-indigo-400 w-5 h-5 group-hover:hidden" />
               <Globe className="text-indigo-400 w-5 h-5 hidden group-hover:block" />
             </Button>
