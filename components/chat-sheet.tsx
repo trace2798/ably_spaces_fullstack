@@ -22,11 +22,9 @@ type MessageDispatch =
   | MessageDeleteEvent;
 
 const ChatSheet = ({
-  clientId,
   channelName,
   creatorId,
 }: {
-  clientId: string;
   channelName: string;
   creatorId: string;
 }) => {
@@ -39,6 +37,29 @@ const ChatSheet = ({
   const author = user.fullName;
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [isTyping, setIsTyping] = useState(false);
+  const [typingUsers, setTypingUsers] = useState<string[]>([]);
+  // Function to start typing
+  const startTyping = () => {
+    if (!isTyping) {
+      setIsTyping(true);
+      channel.presence.update({ typing: true });
+    }
+  };
+
+  // Function to stop typing
+  const stopTyping = () => {
+    if (isTyping) {
+      setIsTyping(false);
+      channel.presence.update({ typing: false });
+    }
+  };
+
+  const handleKeyDown = () => {
+    startTyping();
+    // After user stops typing for one second, send stopTyping event
+    setTimeout(stopTyping, 1000);
+  };
 
   // 💡 Used to handle incoming events and action the changes against the message list
 
@@ -71,7 +92,24 @@ const ChatSheet = ({
   };
 
   const { channel } = useChannel(channelName, handleMessage);
-  console.log(channel, "CHANNEL");
+  console.log(channel, "CHANNEl");
+  useEffect(() => {
+    const onPresenceUpdate = (member: any) => {
+      if (member.data.typing) {
+        setTypingUsers((users) => [...users, member.clientId]);
+      } else {
+        setTypingUsers((users) => users.filter((id) => id !== member.clientId));
+      }
+    };
+    {
+      console.log(onPresenceUpdate, "PRESENCE UPDATE");
+    }
+    channel.presence.subscribe("update", onPresenceUpdate);
+
+    return () => {
+      channel.presence.unsubscribe("update", onPresenceUpdate);
+    };
+  }, [channel]);
 
   // 💡 Handles pressing enter or the send button
   const sendMessage = () => {
@@ -154,6 +192,7 @@ const ChatSheet = ({
 
           <div ref={scrollRef} />
         </ScrollArea>
+        {typingUsers.length > 0 && <p>{typingUsers.join(", ")} is typing...</p>}
         <Input
           type="text"
           disabled={loading}
@@ -161,7 +200,8 @@ const ChatSheet = ({
           placeholder="Send a Message to get started"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+          // onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+          onKeyDown={handleKeyDown}
         />
       </SheetContent>
     </Sheet>
