@@ -7,7 +7,7 @@ import {
   Plus,
   PlusCircle,
   Search,
-  Trash
+  Trash,
 } from "lucide-react";
 import { useParams, usePathname, useRouter } from "next/navigation";
 import { ElementRef, useEffect, useRef, useState } from "react";
@@ -28,6 +28,7 @@ import { Item } from "./item";
 import { Navbar } from "./navbar";
 import { TrashBox } from "./trash-box";
 import UserInfoCard from "./user-info-card";
+import { DocumentListPrivate } from "./document-list-private";
 
 export const Navigation = () => {
   const router = useRouter();
@@ -151,13 +152,18 @@ export const Navigation = () => {
           <ChevronsLeft className="h-6 w-6" />
         </div>
         <div>
-          <UserInfoCard/>
+          <UserInfoCard />
           <Item label="Search" icon={Search} isSearch onClick={search.onOpen} />
           <Item onClick={handleCreate} label="New page" icon={PlusCircle} />
         </div>
         <div className="mt-4">
+          <h1 className="ml-3 text-sm text-indigo-600">Public Documents</h1>
           <DocumentList />
           <Item onClick={handleCreate} icon={Plus} label="Add a page" />
+          <h1 className="ml-3 text-sm text-indigo-600 mt-3">
+            Private Documents
+          </h1>
+          <DocumentListPrivate />
           <Popover>
             <PopoverTrigger className="w-full mt-4">
               <Item label="Trash" icon={Trash} />
@@ -183,7 +189,6 @@ export const Navigation = () => {
             </div>
           </SignOutButton>
         </div>
-       
       </aside>
       <div
         ref={navbarRef}
