@@ -44,7 +44,7 @@ const ChatSheet = ({
   const startTyping = () => {
     if (!isTyping) {
       setIsTyping(true);
-      channel.presence.update({ typing: true });
+      channel.presence.update({ typing: true, name: user.fullName });
     }
   };
 
@@ -52,7 +52,7 @@ const ChatSheet = ({
   const stopTyping = () => {
     if (isTyping) {
       setIsTyping(false);
-      channel.presence.update({ typing: false });
+      channel.presence.update({ typing: false, name: user.fullName });
     }
   };
 
@@ -93,17 +93,20 @@ const ChatSheet = ({
   // console.log(channel, "CHANNEl");
   useEffect(() => {
     const onPresenceUpdate = (member: any) => {
+      // console.log(member, "MEMBER");
       if (member.data.typing) {
-        setTypingUsers((users) => [...users, member.clientId]);
+        setTypingUsers((users) => [...users, member.data.name]);
+        // console.log(user, "USER");
       } else {
-        setTypingUsers((users) => users.filter((id) => id !== member.clientId));
+        setTypingUsers((users) =>
+          users.filter((id) => id !== member.data.name)
+        );
       }
     };
     // {
     //   console.log(onPresenceUpdate, "PRESENCE UPDATE");
     // }
     channel.presence.subscribe("update", onPresenceUpdate);
-
     return () => {
       channel.presence.unsubscribe("update", onPresenceUpdate);
     };

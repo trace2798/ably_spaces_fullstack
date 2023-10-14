@@ -1,6 +1,6 @@
 "use client";
 const CursorSvg = ({ cursorColor }: { cursorColor: string }) => {
-  console.log(cursorColor);
+  // console.log(cursorColor);
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

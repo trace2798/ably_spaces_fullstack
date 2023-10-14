@@ -119,7 +119,7 @@ const MemberCursors = ({
           profileData.userColors.nameColor = nameColor;
         }
 
-        console.log("RANDOM COLOR", cursorColor);
+        // console.log("RANDOM COLOR", cursorColor);
         return (
           <div
             key={connectionId}

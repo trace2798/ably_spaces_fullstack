@@ -35,7 +35,7 @@ export const DocumentListPrivate = ({
   const documentsPrivate = useQuery(api.documents.getSidebarPrivate, {
     parentDocument: parentDocumentId,
   });
-  console.log(documentsPrivate, "DOCUMENTS PUBLIC");
+  // console.log(documentsPrivate, "DOCUMENTS PUBLIC");
   const onRedirect = (documentId: string) => {
     router.push(`/documents/${documentId}`);
   };

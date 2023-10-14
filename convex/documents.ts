@@ -160,9 +160,9 @@ export const create = mutation({
     if (!identity) {
       throw new Error("Not authenticated");
     }
-    console.log(identity, "IDENTITY");
+    // console.log(identity, "IDENTITY");
     const userId = identity.subject;
-    console.log(userId, "USER ID");
+    // console.log(userId, "USER ID");
     const userName = identity.name || "Anonymous";
     const document = await ctx.db.insert("documents", {
       title: args.title,

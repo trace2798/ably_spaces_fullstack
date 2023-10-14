@@ -20,7 +20,7 @@ export const colours = [
 export const getSpaceNameFromUrl = () => {
   const url = new URL(window.location.href);
   const spaceNameInParams = url.searchParams.get("space");
-  console.log(url, "URL");
+  // console.log(url, "URL");
   if (spaceNameInParams) {
     return spaceNameInParams;
   } else {
