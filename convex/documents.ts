@@ -122,7 +122,7 @@ export const create = mutation({
       userId,
       isArchived: false,
       isPublished: false,
-      isPublic: false,
+      isPublic: true,
       userName,
     });
 
