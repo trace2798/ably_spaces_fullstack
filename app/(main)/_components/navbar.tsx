@@ -53,7 +53,7 @@ export const Navbar = ({ isCollapsed, onResetWidth }: NavbarProps) => {
           <Title initialData={document} />
           <div className="flex items-center gap-x-2">
             <ModeToggle />
-            <Menu documentId={document._id} creatorName={document.userName} />
+            <Menu documentId={document._id} creatorName={document.userName} isPublic={document.isPublic} />
           </div>
         </div>
       </nav>
