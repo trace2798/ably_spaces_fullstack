@@ -22,7 +22,7 @@ const YourCursor = ({
     top: number;
     state: string;
   }>({ left: 0, top: 0, state: "move" });
-  const { isSignedIn, user, isLoaded } = useUser();
+  const { user } = useUser();
   const handleSelfCursorMove = useCursor(
     setCursorPosition,
     parentRef,

@@ -1,8 +1,6 @@
 // import { type SpaceMember } from "@ably/spaces";
 
 import { SpaceMember } from "@ably/spaces";
-import { Types } from "ably";
-import { SignJWT } from "jose";
 
 export const colours = [
   { nameColor: "bg-orange-700", cursorColor: "#FE372B" },
