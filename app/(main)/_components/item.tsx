@@ -37,6 +37,8 @@ interface ItemProps {
   label: string;
   onClick?: () => void;
   icon: LucideIcon;
+  creatorId?: string;
+  creatorName?: string;
 }
 
 export const Item = ({
@@ -50,6 +52,8 @@ export const Item = ({
   level = 0,
   onExpand,
   expanded,
+  creatorId,
+  creatorName,
 }: ItemProps) => {
   const { user } = useUser();
   const router = useRouter();
@@ -108,7 +112,7 @@ export const Item = ({
         active && "bg-primary/5 text-primary"
       )}
     >
-      {!!id && (
+      {/* {!!id && (
         <div
           role="button"
           className="h-full rounded-sm hover:bg-neutral-300 dark:hover:bg-neutral-600 mr-1"
@@ -116,7 +120,7 @@ export const Item = ({
         >
           <ChevronIcon className="h-4 w-4 shrink-0 text-muted-foreground/50" />
         </div>
-      )}
+      )} */}
       {documentIcon ? (
         <div className="shrink-0 mr-2 text-[18px]">{documentIcon}</div>
       ) : (
@@ -128,6 +132,7 @@ export const Item = ({
           <span className="text-sm">ctrl + K</span>
         </kbd>
       )}
+
       {!!id && (
         <div className="ml-auto flex items-center gap-x-2">
           <DropdownMenu>
@@ -151,23 +156,23 @@ export const Item = ({
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <div className="text-xs text-muted-foreground p-2">
-                Created by: {user?.fullName}
+                Created by: {creatorName}
               </div>
             </DropdownMenuContent>
           </DropdownMenu>
-          <div
+          {/* <div
             role="button"
             onClick={onCreate}
             className="opacity-0 group-hover:opacity-100 h-full ml-auto rounded-sm hover:bg-neutral-300 dark:hover:bg-neutral-600"
           >
             <Plus className="h-4 w-4 text-muted-foreground" />
-          </div>
+          </div> */}
           <div
             role="button"
             // onClick={onCreate}
             className="opacity-0 group-hover:opacity-100 h-full ml-auto rounded-sm hover:bg-neutral-300 dark:hover:bg-neutral-600"
           >
-            <Globe className="h-4 w-4 text-muted-foreground" />
+            <Globe className="h-4 w-4 text-indigo-300" />
           </div>
         </div>
       )}

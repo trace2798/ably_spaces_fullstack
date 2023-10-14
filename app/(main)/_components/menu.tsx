@@ -20,9 +20,10 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 interface MenuProps {
   documentId: Id<"documents">;
+  creatorName: string;
 }
 
-export const Menu = ({ documentId }: MenuProps) => {
+export const Menu = ({ documentId, creatorName }: MenuProps) => {
   const router = useRouter();
   const { user } = useUser();
 
@@ -59,7 +60,7 @@ export const Menu = ({ documentId }: MenuProps) => {
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <div className="text-xs text-muted-foreground p-2">
-          Created by: {user?.fullName}
+          Created by: {creatorName}
         </div>
       </DropdownMenuContent>
     </DropdownMenu>

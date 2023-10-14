@@ -74,8 +74,6 @@ export const getSidebarPublic = query({
   },
 });
 
-
-
 // export const getSidebar = query({
 //   args: {
 //     parentDocument: v.optional(v.id("documents")),
@@ -95,7 +93,7 @@ export const getSidebarPublic = query({
 //         q.eq("userId", userId).eq("parentDocument", args.parentDocument)
 //       )
 //       .filter((q) => q.eq(q.field("isArchived"), false))
-//       .filter((q) => q.eq(q.field("isPublic"), true)) 
+//       .filter((q) => q.eq(q.field("isPublic"), true))
 //       .order("desc")
 //       .collect();
 
@@ -114,9 +112,10 @@ export const create = mutation({
     if (!identity) {
       throw new Error("Not authenticated");
     }
-
+    console.log(identity, "IDENTITY");
     const userId = identity.subject;
-
+    console.log(userId, "USER ID");
+    const userName = identity.name || "Anonymous";
     const document = await ctx.db.insert("documents", {
       title: args.title,
       parentDocument: args.parentDocument,
@@ -124,6 +123,7 @@ export const create = mutation({
       isArchived: false,
       isPublished: false,
       isPublic: false,
+      userName,
     });
 
     return document;
