@@ -160,7 +160,7 @@ const ChatSheet = ({
       <SheetTrigger asChild>
         <Button variant="outline">Open Chat</Button>
       </SheetTrigger>
-      <SheetContent className="w-[100vw] md:w-[50vw] lg:w-[80vw] mt-24">
+      <SheetContent className="w-[100vw] md:w-[50vw] lg:w-[30vw] mt-12">
         <ScrollArea
           className={cn(
             "border-none max-h-[70vh] overflow-y-auto px-5 bg-text-muted w-full transition flex text-sm flex-col rounded-2xl",
