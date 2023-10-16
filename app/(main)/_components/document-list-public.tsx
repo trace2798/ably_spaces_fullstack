@@ -11,16 +11,16 @@ import { cn } from "@/lib/utils";
 
 import { Item } from "./item";
 
-interface DocumentListProps {
+interface DocumentListPublicProps {
   parentDocumentId?: Id<"documents">;
   level?: number;
   data?: Doc<"documents">[];
 }
 
-export const DocumentList = ({
+export const DocumentListPublic = ({
   parentDocumentId,
   level = 0,
-}: DocumentListProps) => {
+}: DocumentListPublicProps) => {
   const params = useParams();
   const router = useRouter();
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
@@ -82,9 +82,13 @@ export const DocumentList = ({
             expanded={expanded[document._id]}
             creatorId={document.userId}
             creatorName={document.userName}
+            isEditable={document.isEditable}
           />
           {expanded[document._id] && (
-            <DocumentList parentDocumentId={document._id} level={level + 1} />
+            <DocumentListPublic
+              parentDocumentId={document._id}
+              level={level + 1}
+            />
           )}
         </div>
       ))}

@@ -4,7 +4,15 @@ import { useRouter } from "next/navigation";
 import { useUser } from "@clerk/clerk-react";
 import { useMutation } from "convex/react";
 import { toast } from "sonner";
-import { Globe, Lock, MoreHorizontal, Trash } from "lucide-react";
+import {
+  CircleOff,
+  Globe,
+  Lock,
+  MoreHorizontal,
+  Pencil,
+  PencilRuler,
+  Trash,
+} from "lucide-react";
 
 import { Id } from "@/convex/_generated/dataModel";
 import {
@@ -27,9 +35,15 @@ interface MenuProps {
   documentId: Id<"documents">;
   creatorName: string;
   isPublic?: boolean;
+  isEditable?: boolean;
 }
 
-export const Menu = ({ documentId, creatorName, isPublic }: MenuProps) => {
+export const Menu = ({
+  documentId,
+  creatorName,
+  isPublic,
+  isEditable,
+}: MenuProps) => {
   const router = useRouter();
   const { user } = useUser();
 
@@ -56,6 +70,19 @@ export const Menu = ({ documentId, creatorName, isPublic }: MenuProps) => {
       loading: "Changing Visibility...",
       success: "Visibility Changed",
       error: "Failed to change visibility.",
+    });
+
+    router.push("/documents");
+  };
+
+  const onChangeEditibility = () => {
+    const promise = changeVisibility({ id: documentId });
+
+    toast.promise(promise, {
+      loading: "Changing Editing ability...",
+      success: "Any one can edit now Changed",
+      error:
+        "Failed to change property. Only the creator can change this property",
     });
 
     router.push("/documents");
@@ -116,6 +143,39 @@ export const Menu = ({ documentId, creatorName, isPublic }: MenuProps) => {
           </HoverCardTrigger>
           <HoverCardContent className="w-fit text-sm">
             Click to make it public
+          </HoverCardContent>
+        </HoverCard>
+      )}
+      {isEditable ? (
+        <HoverCard>
+          <HoverCardTrigger className="flex flex-col group">
+            <Button
+              size="sm"
+              variant="ghost"
+              onClick={() => onChangeEditibility()}
+            >
+              <Pencil className="text-indigo-400 w-5 h-5 group-hover:hidden" />
+              <CircleOff className="text-indigo-400 w-5 h-5 hidden group-hover:block" />
+            </Button>
+          </HoverCardTrigger>
+          <HoverCardContent className="w-fit text-sm">
+            Click to make it non-editable
+          </HoverCardContent>
+        </HoverCard>
+      ) : (
+        <HoverCard>
+          <HoverCardTrigger className="flex flex-col group">
+            <Button
+              size="sm"
+              variant="ghost"
+              onClick={() => onChangeEditibility()}
+            >
+              <CircleOff className="text-indigo-400 w-5 h-5 group-hover:hidden" />
+              <Pencil className="text-indigo-400 w-5 h-5 hidden group-hover:block" />
+            </Button>
+          </HoverCardTrigger>
+          <HoverCardContent className="w-fit text-sm">
+            Click to make it Editable
           </HoverCardContent>
         </HoverCard>
       )}

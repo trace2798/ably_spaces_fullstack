@@ -59,6 +59,7 @@ export const Navbar = ({ isCollapsed, onResetWidth }: NavbarProps) => {
               documentId={document._id}
               creatorName={document.userName}
               isPublic={document.isPublic}
+              isEditable={document.isEditable}
             />
             <ChatSheet channelName={document._id} creatorId={document.userId} />
             {/* <RealtimeForm

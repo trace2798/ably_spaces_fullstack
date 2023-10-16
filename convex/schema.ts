@@ -13,6 +13,7 @@ export default defineSchema({
     isPublished: v.boolean(),
     isPublic: v.boolean(),
     userName: v.string(),
+    isEditable: v.boolean(),
   })
     .index("by_user", ["userId"])
     .index("by_user_parent", ["userId", "parentDocument"]),

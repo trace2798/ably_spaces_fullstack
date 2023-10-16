@@ -25,7 +25,7 @@ import { useSearch } from "@/hooks/use-search";
 import { cn } from "@/lib/utils";
 import { SignOutButton } from "@clerk/clerk-react";
 import Link from "next/link";
-import { DocumentList } from "./document-list";
+import { DocumentListPublic } from "./document-list-public";
 import { DocumentListPrivate } from "./document-list-private";
 import { Item } from "./item";
 import { Navbar } from "./navbar";
@@ -168,7 +168,7 @@ export const Navigation = () => {
           <h1 className="ml-3 mb-1 text-sm text-indigo-600 underline underline-offset-2">
             Public Documents
           </h1>
-          <DocumentList />
+          <DocumentListPublic />
           <Item onClick={handleCreate} icon={Plus} label="Add a page" />
           <h1 className="ml-3 text-sm text-indigo-600 mt-3 mb-1 underline underline-offset-2">
             Private Documents

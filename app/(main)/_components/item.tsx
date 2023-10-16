@@ -39,6 +39,7 @@ interface ItemProps {
   icon: LucideIcon;
   creatorId?: string;
   creatorName?: string;
+  isEditable?: boolean;
 }
 
 export const Item = ({

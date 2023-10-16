@@ -62,7 +62,19 @@ const DocumentIdPage = ({ params }: DocumentIdPageProps) => {
       <Cover url={document.coverImage} />
       <div className="md:max-w-3xl lg:max-w-4xl mx-auto">
         <Toolbar initialData={document} />
-        <Editor onChange={onChange} initialContent={document.content} />
+        {document.isEditable ? (
+          <Editor
+            onChange={onChange}
+            initialContent={document.content}
+            editable={true}
+          />
+        ) : (
+          <Editor
+            onChange={onChange}
+            initialContent={document.content}
+            editable={false}
+          />
+        )}
       </div>
     </div>
   );

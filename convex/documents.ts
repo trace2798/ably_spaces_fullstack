@@ -172,6 +172,7 @@ export const create = mutation({
       isPublished: false,
       isPublic: true,
       userName,
+      isEditable: true,
     });
 
     return document;
