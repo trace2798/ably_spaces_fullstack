@@ -1,5 +1,4 @@
 "use client";
-
 import { AblyClientProvider } from "@/components/ably-provider";
 import AvatarCard from "@/components/avatar-card";
 import LiveCursors from "@/components/live-cursor";
@@ -15,7 +14,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
 
   if (isLoading) {
     return (
-      <div className="h-full flex items-center justify-center">
+      <div className="h-screen flex items-center justify-center">
         <Spinner size="lg" />
       </div>
     );
