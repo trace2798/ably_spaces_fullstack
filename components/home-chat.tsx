@@ -6,12 +6,12 @@ import { Types } from "ably";
 import { useChannel } from "ably/react";
 import { redirect } from "next/navigation";
 import { ElementRef, useEffect, useReducer, useRef, useState } from "react";
-import AblyMessages from "./ably-messages";
+import AblyHomeMessages from "./ably-home-messages";
 import { Button } from "./ui/button";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "./ui/hover-card";
 import { Input } from "./ui/input";
 import { ScrollArea } from "./ui/scroll-area";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "./ui/hover-card";
 
 type MessageSendEvent = { type: "send"; message: Message; id: string };
 type MessageClearEvent = { type: "clear" };
@@ -22,18 +22,12 @@ type MessageDispatch =
   | MessageClearEvent
   | MessageDeleteEvent;
 
-const ChatSheet = ({
-  channelName,
-  creatorId,
-}: {
-  channelName: string;
-  creatorId: string;
-}) => {
+const ChatHome = ({ channelName }: { channelName: string }) => {
   const { user } = useUser();
   if (!user) {
     redirect("/");
   }
-  const isModerator = user.id === creatorId;
+
   const scrollRef = useRef<ElementRef<"div">>(null);
   const author = user.fullName;
   const [message, setMessage] = useState("");
@@ -193,10 +187,7 @@ const ChatSheet = ({
       <SheetContent className="w-[100vw] md:w-[50vw] lg:w-[30vw] mt-12">
         <ScrollArea
           className={cn(
-            "border-none max-h-[70vh] overflow-y-auto px-5 bg-text-muted w-full transition flex text-sm flex-col rounded-2xl",
-            {
-              "bg-slate-900": isModerator,
-            }
+            "border-none max-h-[70vh] overflow-y-auto px-5 bg-text-muted w-full transition flex text-sm flex-col rounded-2xl"
           )}
         >
           {messages.length === 0 ? (
@@ -205,11 +196,10 @@ const ChatSheet = ({
             </div>
           ) : (
             messages.map((message, index) => (
-              <AblyMessages
+              <AblyHomeMessages
                 message={message}
                 isOwnMessage={message.author === author}
                 deleteMessage={deleteMessage}
-                isModerator={isModerator}
                 key={index}
               />
             ))
@@ -227,8 +217,6 @@ const ChatSheet = ({
           placeholder="Send a Message to get started"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          // onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-          // onKeyDown={handleKeyDown}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               sendMessage();
@@ -241,4 +229,4 @@ const ChatSheet = ({
   );
 };
 
-export default ChatSheet;
+export default ChatHome;

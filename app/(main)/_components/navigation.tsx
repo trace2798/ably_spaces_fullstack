@@ -29,6 +29,7 @@ import { Navbar } from "./navbar";
 import { TrashBox } from "./trash-box";
 import UserInfoCard from "./user-info-card";
 import { DocumentListPrivate } from "./document-list-private";
+import Link from "next/link";
 
 export const Navigation = () => {
   const router = useRouter();
@@ -152,6 +153,12 @@ export const Navigation = () => {
           <ChevronsLeft className="h-6 w-6" />
         </div>
         <div>
+          <Link
+            href="/"
+            className="text-center flex justify-center font-bold text-xl"
+          >
+            Mosiac
+          </Link>
           <UserInfoCard />
           <Item label="Search" icon={Search} isSearch onClick={search.onOpen} />
           <Item onClick={handleCreate} label="New page" icon={PlusCircle} />
