@@ -55,7 +55,7 @@ const AblyHomeMessages: FC<AblyHomeMessagesProps> = ({
             aria-label="Trash button to delete Message. Mod of the chat can delete all the messages."
             // variant="ghost"
           >
-            <Trash className="w-4 h-4 hover:text-red-700 text-neutral-200" />
+            <Trash className="w-4 h-4 hover:text-red-700 text-slate-950 dark:text-neutral-200" />
           </button>
         </div>
       </div>

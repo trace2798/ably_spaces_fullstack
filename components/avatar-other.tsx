@@ -8,6 +8,7 @@ import { Member } from "@/utils/helpers";
 import { useUser } from "@clerk/clerk-react";
 import { FC } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { redirect } from "next/navigation";
 
 interface AvatarOtherProps {
   users: Member[];
@@ -15,6 +16,9 @@ interface AvatarOtherProps {
 
 const AvatarOther: FC<AvatarOtherProps> = ({ users }) => {
   const { user } = useUser();
+  if (!user) {
+    redirect("/");
+  }
   const fullName = user?.fullName;
   let initials = "DP";
   console.log("USERS", users);
@@ -24,10 +28,13 @@ const AvatarOther: FC<AvatarOtherProps> = ({ users }) => {
     const lastLetter = words[words.length - 1].charAt(0);
     initials = `${firstLetter}${lastLetter}`;
   }
+  const loggedInUser = users.filter((u) => u.clientId === user.id);
+  const otherUsers = users.filter((u) => u.clientId !== user.id);
+  const orderedUsers = [...loggedInUser, ...otherUsers];
 
   return (
     <>
-      {users.map((user, index) => {
+      {orderedUsers.map((user, index) => {
         const fullName = user?.profileData.name;
         let initials = "DP";
         // console.log("USERS", users);
@@ -37,7 +44,6 @@ const AvatarOther: FC<AvatarOtherProps> = ({ users }) => {
           const lastLetter = words[words.length - 1].charAt(0);
           initials = `${firstLetter}${lastLetter}`;
         }
-
         return (
           <HoverCard key={index}>
             <HoverCardTrigger>

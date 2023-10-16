@@ -6,18 +6,18 @@ import AvatarOther from "./avatar-other";
 import AvatarSelf from "./avatar-self";
 import { Separator } from "./ui/separator";
 
-const Avatars = ({
+const AblyAvatars = ({
   otherUsers,
 }: {
   otherUsers: Member[];
 }) => {
   return (
     <div className="relative flex">
-      <AvatarSelf />
-      <Separator
+      {/* <AvatarSelf /> */}
+      {/* <Separator
         orientation="vertical"
         className="bg-indigo-500 h-[30px] mx-4"
-      />
+      /> */}
       <AvatarOther
         users={otherUsers.slice(0, MAX_USERS_BEFORE_LIST).reverse()}
       />
@@ -30,4 +30,4 @@ const Avatars = ({
   );
 };
 
-export default Avatars;
+export default AblyAvatars;

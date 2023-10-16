@@ -1,5 +1,5 @@
 import { FC } from "react";
-import AvatarStack from "./AvatarStack";
+import AvatarStack from "./avatar-stack";
 import ChatHome from "./home-chat";
 import { Card } from "./ui/card";
 import { Separator } from "./ui/separator";

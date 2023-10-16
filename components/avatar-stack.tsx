@@ -1,11 +1,11 @@
 "use client";
 import { useUser } from "@clerk/clerk-react";
 import { useContext, useEffect, useMemo } from "react";
-import { SpacesContext } from "../components/space-context";
+import { SpacesContext } from "./space-context";
 import useMembers from "../hooks/useMembers";
 import type { Member } from "../utils/helpers";
 import { getMemberColor } from "../utils/mockColors";
-import Avatars from "./ably-avatar";
+import AblyAvatars from "./ably-avatar";
 
 const AvatarStack = () => {
   const { user } = useUser();
@@ -22,11 +22,21 @@ const AvatarStack = () => {
   }, [space]);
 
   /** 💡 Get everybody except the local member in the space and the local member 💡 */
-  const { otherMembers } = useMembers(space);
+  const { allMembers, otherMembers, self } = useMembers(space);
+  console.log(allMembers, "All MEMBERS");
+  console.log(otherMembers, "Other Member");
+  console.log(self, "SELF");
+  const uniqueUsers = Array.from(
+    new Set(allMembers.map((user) => user.clientId))
+  ).map((id) => {
+    return allMembers.find((user) => user.clientId === id);
+  });
+
+  console.log(uniqueUsers, "UNIQUE");
   return (
     <div id="avatar-stack">
-      {/** 💡 Stack of first 5 user avatars including yourself.💡 */}
-      <Avatars otherUsers={otherMembers as Member[]} />
+      {/** 💡 Stack of first 10 user avatars including yourself.💡 */}
+      <AblyAvatars otherUsers={uniqueUsers as Member[]} />
     </div>
   );
 };
