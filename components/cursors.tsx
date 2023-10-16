@@ -34,7 +34,7 @@ const YourCursor = ({
   }
   if (cursorPosition.state === "leave") return null;
   const defaultColor = "#b147ff";
-  const defaultName = "indigo";
+  const defaultName = "bg-indigo-400";
   const { cursorColor = defaultColor, nameColor = defaultName } =
     self.profileData?.userColors || {};
   // const { cursorColor, nameColor } = self.profileData.userColors ?? `${"#b147ff"}`;
@@ -50,7 +50,7 @@ const YourCursor = ({
     >
       <CursorSvg cursorColor={cursorColor} />
       <div
-        className={`px-4 py-2 m-2 ${nameColor} rounded-full text-sm text-white whitespace-nowrap`}
+        className={`px-4 py-2 m-2 bg-muted rounded-full text-sm text-muted-foreground whitespace-nowrap`}
       >
         {user?.firstName} (You)
       </div>
@@ -132,7 +132,7 @@ const MemberCursors = ({
           >
             <CursorSvg cursorColor={nameColor} />
             <div
-              className={`px-4 py-2 m-2 ${cursorColor} rounded-full text-sm text-white whitespace-nowrap member-cursor`}
+              className={`px-4 py-2 m-2 bg-orange-500 rounded-full text-sm text-black dark:text-neutral-200 whitespace-nowrap member-cursor`}
             >
               {profileData.name}
             </div>
