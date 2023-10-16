@@ -157,7 +157,7 @@ const ChatSheet = ({
   }, [messages.length]);
 
   return (
-    <Sheet>
+    <Sheet defaultOpen>
       <SheetTrigger asChild>
         {/* <Button variant="outline">Open Chat</Button> */}
         <Button

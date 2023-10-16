@@ -14,6 +14,7 @@ import { ElementRef, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { useMediaQuery } from "usehooks-ts";
 
+import { Logo } from "@/app/(marketing)/_components/logo";
 import {
   Popover,
   PopoverContent,
@@ -157,7 +158,7 @@ export const Navigation = () => {
             href="/"
             className="text-center flex justify-center font-bold text-xl"
           >
-            Mosiac
+            <Logo />
           </Link>
           <UserInfoCard />
           <Item label="Search" icon={Search} isSearch onClick={search.onOpen} />
