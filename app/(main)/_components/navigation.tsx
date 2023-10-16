@@ -23,13 +23,13 @@ import { api } from "@/convex/_generated/api";
 import { useSearch } from "@/hooks/use-search";
 import { cn } from "@/lib/utils";
 import { SignOutButton } from "@clerk/clerk-react";
+import Link from "next/link";
 import { DocumentList } from "./document-list";
+import { DocumentListPrivate } from "./document-list-private";
 import { Item } from "./item";
 import { Navbar } from "./navbar";
 import { TrashBox } from "./trash-box";
 import UserInfoCard from "./user-info-card";
-import { DocumentListPrivate } from "./document-list-private";
-import Link from "next/link";
 
 export const Navigation = () => {
   const router = useRouter();

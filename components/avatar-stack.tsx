@@ -20,22 +20,20 @@ const AvatarStack = () => {
   useEffect(() => {
     space?.enter({ name, memberColor, imageUrl });
   }, [space]);
-
-  /** 💡 Get everybody except the local member in the space and the local member 💡 */
-  const { allMembers, otherMembers, self } = useMembers(space);
+  // Getting all the members
+  const { allMembers } = useMembers(space);
   console.log(allMembers, "All MEMBERS");
-  console.log(otherMembers, "Other Member");
-  console.log(self, "SELF");
+
   const uniqueUsers = Array.from(
     new Set(allMembers.map((user) => user.clientId))
   ).map((id) => {
     return allMembers.find((user) => user.clientId === id);
   });
 
-  console.log(uniqueUsers, "UNIQUE");
+  // console.log(uniqueUsers, "UNIQUE");
   return (
     <div id="avatar-stack">
-      {/** 💡 Stack of first 10 user avatars including yourself.💡 */}
+      {/** 💡 Stack of first 6 user avatars including yourself.💡 */}
       <AblyAvatars otherUsers={uniqueUsers as Member[]} />
     </div>
   );

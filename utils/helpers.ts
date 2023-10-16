@@ -33,7 +33,7 @@ export const getSpaceNameFromUrl = () => {
 };
 
 export const REMOVE_USER_AFTER_MILLIS = 120_000;
-export const MAX_USERS_BEFORE_LIST = 10;
+export const MAX_USERS_BEFORE_LIST = 6;
 
 export type Member = Omit<SpaceMember, "profileData"> & {
   profileData: { memberColor: string; name: string; imageUrl?: string };
@@ -45,4 +45,15 @@ export type Message = {
   timestamp: Date;
   id: string;
   deleted?: boolean;
+};
+
+
+export const getInitials = (name: string) => {
+  const words = name.split(' ');
+  if (words.length === 1) {
+    return words[0].charAt(0);
+  }
+  const firstLetter = words[0].charAt(0);
+  const lastLetter = words[words.length - 1].charAt(0);
+  return `${firstLetter}${lastLetter}`;
 };

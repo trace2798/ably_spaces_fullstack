@@ -21,7 +21,7 @@ const AblyAvatars = ({
       <AvatarOther
         users={otherUsers.slice(0, MAX_USERS_BEFORE_LIST).reverse()}
       />
-      {otherUsers.length < MAX_USERS_BEFORE_LIST ? (
+      {otherUsers.length <= MAX_USERS_BEFORE_LIST ? (
         ""
       ) : (
         <AvatarDropdown otherUsers={otherUsers} />
