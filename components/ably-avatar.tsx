@@ -6,11 +6,7 @@ import AvatarOther from "./avatar-other";
 import AvatarSelf from "./avatar-self";
 import { Separator } from "./ui/separator";
 
-const AblyAvatars = ({
-  otherUsers,
-}: {
-  otherUsers: Member[];
-}) => {
+const AblyAvatars = ({ otherUsers }: { otherUsers: Member[] }) => {
   return (
     <div className="relative flex">
       {/* <AvatarSelf /> */}
