@@ -6,6 +6,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
+import { ModalProvider } from "@/components/modal-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -33,6 +34,7 @@ export default function RootLayout({
                 storageKey="Mosiac-theme-2"
               >
                 <Toaster position="bottom-center" />
+                <ModalProvider/>
                 {children}
               </ThemeProvider>
             </EdgeStoreProvider>
