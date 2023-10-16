@@ -50,6 +50,7 @@ export const Menu = ({
   const archive = useMutation(api.documents.archive);
 
   const changeVisibility = useMutation(api.documents.toggleVisibility);
+  const changeEditibility = useMutation(api.documents.toggleEditibility);
 
   const onArchive = () => {
     const promise = archive({ id: documentId });
@@ -76,16 +77,15 @@ export const Menu = ({
   };
 
   const onChangeEditibility = () => {
-    const promise = changeVisibility({ id: documentId });
+    const promise = changeEditibility({ id: documentId });
 
     toast.promise(promise, {
       loading: "Changing Editing ability...",
-      success: "Any one can edit now Changed",
+      success: "Done. Editing ability changed",
       error:
         "Failed to change property. Only the creator can change this property",
     });
-
-    router.push("/documents");
+    router.refresh();
   };
 
   return (
