@@ -1,35 +1,34 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useUser } from "@clerk/clerk-react";
 import { useMutation } from "convex/react";
-import { toast } from "sonner";
 import {
   CircleOff,
   Globe,
   Lock,
   MoreHorizontal,
   Pencil,
-  PencilRuler,
   Trash,
 } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
-import { Id } from "@/convex/_generated/dataModel";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
-  DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { api } from "@/convex/_generated/api";
-import { Button } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
+import { Skeleton } from "@/components/ui/skeleton";
+import { api } from "@/convex/_generated/api";
+import { Id } from "@/convex/_generated/dataModel";
 
 interface MenuProps {
   documentId: Id<"documents">;
@@ -73,7 +72,7 @@ export const Menu = ({
       error: "Failed to change visibility.",
     });
 
-    router.push("/documents");
+    // router.push("/documents");
   };
 
   const onChangeEditibility = () => {
