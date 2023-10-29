@@ -12,10 +12,11 @@ export const Heading = () => {
   const { isAuthenticated, isLoading } = useConvexAuth();
 
   return (
-    <div className="max-w-3xl space-y-4">
-      <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold">
-        Make. Dreams. Happen. Welcome to{" "}
-        <span className="underline">Mosiac.</span>
+    <div className="max-w-3xl space-y-4 text-left">
+     
+      <h1 className="text-lg sm:text-xl md:text-3xl font-bold">
+        Mosiac is a realtime collaborative workspace
+        {/* <span className="underline">Mosiac.</span> */}
       </h1>
       <h3 className="text-base sm:text-xl md:text-2xl font-medium">
         Mosiac is my submission for <br />
