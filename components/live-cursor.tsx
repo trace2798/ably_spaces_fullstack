@@ -17,10 +17,10 @@ import { Id } from "@/convex/_generated/dataModel";
 const LiveCursors = () => {
   const params = useParams();
   console.log(params.documentId);
-  if (!params.documentId) {
-    // Return a default component or null
-    return <h1 className="hidden">home</h1>;
-  }
+  // if (!params.documentId) {
+  //   // Return a default component or null
+  //   return <h1 className="hidden">home</h1>;
+  // }
   const document = useQuery(api.documents.getById, {
     documentId: params.documentId as Id<"documents">,
   });
