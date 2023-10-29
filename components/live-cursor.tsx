@@ -14,14 +14,13 @@ import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 
-/** 💡 Select a mock name to assign randomly to a new user that enters the space💡 */
 const LiveCursors = () => {
   const params = useParams();
   console.log(params.documentId);
-  if (!params.documentId) {
-    // Return a default component or null
-    return null; 
-  }
+  // if (!params.documentId) {
+  //   // Return a default component or null
+  //   return null; 
+  // }
   const document = useQuery(api.documents.getById, {
     documentId: params.documentId as Id<"documents">,
   });
