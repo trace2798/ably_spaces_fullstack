@@ -19,10 +19,10 @@ const LiveCursors = () => {
   console.log(params.documentId);
   // if (!params.documentId) {
   //   // Return a default component or null
-  //   return null; 
+  //   return null;
   // }
   const document = useQuery(api.documents.getById, {
-    documentId: params.documentId as Id<"documents">,
+    documentId: (params.documentId as Id<"documents">) ?? "home",
   });
   console.log(document);
 
