@@ -22,7 +22,6 @@ const AvatarStack = () => {
   }, [space]);
   // Getting all the members
   const { allMembers } = useMembers(space);
-  console.log(allMembers, "All MEMBERS");
 
   const uniqueUsers = Array.from(
     new Set(allMembers.map((user) => user.clientId))
@@ -30,7 +29,6 @@ const AvatarStack = () => {
     return allMembers.find((user) => user.clientId === id);
   });
 
-  // console.log(uniqueUsers, "UNIQUE");
   return (
     <div id="avatar-stack">
       {/** 💡 Stack of first 6 user avatars including yourself.💡 */}

@@ -16,33 +16,30 @@ import { Id } from "@/convex/_generated/dataModel";
 
 const LiveCursors = () => {
   const params = useParams();
-  console.log(params.documentId);
-  // if (!params.documentId) {
-  //   // Return a default component or null
-  //   return <h1 className="hidden">home</h1>;
-  // }
+
   const document = useQuery(api.documents.getById, {
     documentId: params.documentId as Id<"documents">,
   });
-  console.log(document);
 
-  const { isSignedIn, user, isLoaded } = useUser();
+  const { user } = useUser();
   const name = user?.firstName;
-  /** 💡 Select a color to assign randomly to a new user that enters the space💡 */
+
   const userColors = useMemo(
     () => colours[Math.floor(Math.random() * colours.length)],
     []
   );
 
-  /** 💡 Get a handle on a space instance 💡 */
+  // Get the space instance from the context
   const space = useContext(SpacesContext);
 
+  // Enter the space with the user’s name and colour when the space is ready
   useEffect(() => {
     space?.enter({ name, userColors });
   }, [space]);
 
+  // Get the self and other members data from the custom hook
   const { self, otherMembers } = useSpaceMembers(space);
-
+  // Create a ref for the live cursors container element
   const liveCursors = useRef(null);
 
   if (document === undefined) {

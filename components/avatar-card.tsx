@@ -15,9 +15,6 @@ interface AvatarCardProps {}
 
 const AvatarCard: FC<AvatarCardProps> = () => {
   const params = useParams();
-  console.log(params);
-  console.log(params, "PARAMS");
-  console.log(params.documentId, "PARAMS ID");
 
   if (document === undefined) {
     return (
