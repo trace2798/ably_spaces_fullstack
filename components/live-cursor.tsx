@@ -70,7 +70,7 @@ const LiveCursors = () => {
       id="live-cursors"
       ref={liveCursors}
       className={`absolute top-12 left-0 w-full h-full ${
-        document.isEditable ? "z-0" : "z-[99999]"
+        document.isEditable ? "z-0" : "z-[9999]"
       }`}
     >
       <YourCursor
