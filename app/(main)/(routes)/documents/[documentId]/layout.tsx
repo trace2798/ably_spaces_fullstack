@@ -25,18 +25,16 @@ const DocumentLayout = ({ children }: { children: React.ReactNode }) => {
   }
 
   return (
-    <AblyClientProvider>
-      <SpaceContextProvider example="member-locations">
-        <LiveCursors />
-        <AvatarCard />
-        <div className="h-full flex dark:bg-[#1F1F1F]">
-          <main className="flex-1 h-full overflow-y-auto">
-            <SearchCommand />
-            {children}
-          </main>
-        </div>
-      </SpaceContextProvider>
-    </AblyClientProvider>
+    <>
+      <LiveCursors />
+      <AvatarCard />
+      <div className="h-full flex">
+        <main className="flex-1 h-full overflow-y-auto">
+          <SearchCommand />
+          {children}
+        </main>
+      </div>
+    </>
   );
 };
 
