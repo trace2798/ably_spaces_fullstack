@@ -62,10 +62,6 @@ export const Navbar = ({ isCollapsed, onResetWidth }: NavbarProps) => {
               isEditable={document.isEditable}
             />
             <ChatSheet channelName={document._id} creatorId={document.userId} />
-            {/* <RealtimeForm
-              clientId={user?.id || "Sm"}
-              channelName={document._id}
-            /> */}
           </div>
         </div>
       </nav>

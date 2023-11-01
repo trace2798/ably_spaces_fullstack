@@ -1,5 +1,4 @@
 "use client";
-
 import { useConvexAuth } from "convex/react";
 import { ArrowRight } from "lucide-react";
 import { SignInButton } from "@clerk/clerk-react";
@@ -43,7 +42,11 @@ export const Heading = () => {
         </div>
       )}
       {isAuthenticated && !isLoading && (
-        <Button asChild>
+        <Button
+          asChild
+          variant="outline"
+          className="bg-inherit border-indigo-500"
+        >
           <Link href="/documents">
             Enter Mosiac
             <ArrowRight className="h-4 w-4 ml-2" />

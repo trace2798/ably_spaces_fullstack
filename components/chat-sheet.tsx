@@ -159,7 +159,6 @@ const ChatSheet = ({
   return (
     <Sheet>
       <SheetTrigger asChild>
-        {/* <Button variant="outline">Open Chat</Button> */}
         <Button
           className="text-muted-foreground rounded-full hover:bg-zinc-300 dark:hover:bg-gray-600 hover:text-indigo-700 dark:hover:text-zinc-100"
           size="icon"
