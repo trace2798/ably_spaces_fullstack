@@ -12,19 +12,30 @@ export const Heading = () => {
   const { isAuthenticated, isLoading } = useConvexAuth();
 
   return (
-    <div className="max-w-3xl space-y-4 text-left">
-     
-      <h1 className="text-lg sm:text-xl md:text-3xl font-bold">
-        Mosiac is a realtime collaborative workspace
-        {/* <span className="underline">Mosiac.</span> */}
+    <div className="max-w-3xl space-y-4 mt-3 md:text-left">
+      <h1 className="text-lg sm:text-xl md:text-3xl font-switzerSemibold">
+        Mosiac is a{" "}
+        <span className="bg-gradient-to-r bg-clip-text text-transparent from-yellow-500 via-purple-500 to-red-500 animate-text">
+          realtime collaborative
+        </span>
+        &nbsp; workspace
       </h1>
-      <h3 className="text-base sm:text-xl md:text-2xl font-medium">
+      <h3 className="text-base sm:text-xl md:text-2xl font-switzerMedium ">
         Mosiac is my submission for <br />
-        Ably Hackathon 2023
+        <a
+          href="https://ably.devpost.com/"
+          target="_blank"
+          className="hover:cursor-pointer bg-gradient-to-r bg-clip-text text-transparent from-blue-100 via-purple-500 to-red-900 animate-text"
+        >
+          Ably Realtime Experiences Hackathon 2023
+        </a>
       </h3>
-      <h3 className="text-base sm:text-xl md:text-2xl font-medium">
+      <h3 className="text-base sm:text-xl md:text-2xl font-switzerMedium">
         Mosiac is made possible by <br />
-        Ably Spaces
+        <span className="bg-gradient-to-r bg-clip-text text-transparent from-yellow-500 via-purple-500 to-red-500 animate-text">
+          Ably Spaces
+        </span>{" "}
+        and more
       </h3>
       {isLoading && (
         <div className="w-full flex items-center justify-center">

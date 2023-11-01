@@ -1,7 +1,6 @@
 "use client";
 import { AblyClientProvider } from "@/components/ably-provider";
 import AvatarCard from "@/components/avatar-card";
-import LiveCursors from "@/components/live-cursor";
 import { SearchCommand } from "@/components/search-command";
 import { SpaceContextProvider } from "@/components/space-context";
 import { Spinner } from "@/components/spinner";
@@ -27,7 +26,6 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <AblyClientProvider>
       <SpaceContextProvider example="member-locations">
-       
         <AvatarCard />
 
         <div className="h-full flex dark:bg-[#1F1F1F]">

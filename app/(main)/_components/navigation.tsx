@@ -138,7 +138,7 @@ export const Navigation = () => {
       <aside
         ref={sidebarRef}
         className={cn(
-          "group/sidebar min-h-screen h-fill bg-secondary overflow-y-auto relative flex w-60 flex-col z-[99999]",
+          "group/sidebar min-h-screen h-fill bg-secondary overflow-y-auto relative flex w-60 flex-col z-[99999] font-switzerMedium",
           isResetting && "transition-all ease-in-out duration-300",
           isMobile && "w-0"
         )}
@@ -165,12 +165,12 @@ export const Navigation = () => {
           <Item onClick={handleCreate} label="New page" icon={PlusCircle} />
         </div>
         <div className="mt-4">
-          <h1 className="ml-3 mb-1 text-sm text-indigo-600 underline underline-offset-2">
+          <h1 className="ml-3 mb-1 text-sm text-indigo-600 underline underline-offset-2 font-switzerMedium">
             Public Documents
           </h1>
           <DocumentListPublic />
           <Item onClick={handleCreate} icon={Plus} label="Add a page" />
-          <h1 className="ml-3 text-sm text-indigo-600 mt-3 mb-1 underline underline-offset-2">
+          <h1 className="ml-3 text-sm text-indigo-600 mt-3 mb-1 underline underline-offset-2 font-switzerMedium">
             Private Documents
           </h1>
           <DocumentListPrivate />

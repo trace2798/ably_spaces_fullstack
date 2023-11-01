@@ -30,7 +30,7 @@ const UserInfoCard: FC<UserInfoCardProps> = ({}) => {
             </div>
           </div>
         </HoverCardTrigger>
-        <HoverCardContent className="w-fit text-sm">
+        <HoverCardContent className="w-fit text-sm font-switzerRegular">
           {user?.emailAddresses[0].emailAddress}
         </HoverCardContent>
       </HoverCard>

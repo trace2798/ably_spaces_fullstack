@@ -3,12 +3,9 @@ import { ConvexClientProvider } from "@/components/convex-provider";
 import { ThemeProvider } from "@/components/theme-provider";
 import { EdgeStoreProvider } from "@/lib/edgestore";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
 import { ModalProvider } from "@/components/modal-provider";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Ably Spaces",
@@ -22,22 +19,22 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className="font-switzerRegular">
         <ConvexClientProvider>
           {/* <AblyClientProvider> */}
-            <EdgeStoreProvider>
-              <ThemeProvider
-                attribute="class"
-                defaultTheme="system"
-                enableSystem
-                disableTransitionOnChange
-                storageKey="Mosiac-theme-2"
-              >
-                <Toaster position="bottom-center" />
-                <ModalProvider/>
-                {children}
-              </ThemeProvider>
-            </EdgeStoreProvider>
+          <EdgeStoreProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+              storageKey="Mosiac-theme-2"
+            >
+              <Toaster position="bottom-center" />
+              <ModalProvider />
+              {children}
+            </ThemeProvider>
+          </EdgeStoreProvider>
           {/* </AblyClientProvider> */}
         </ConvexClientProvider>
       </body>
